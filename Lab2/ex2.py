@@ -15,13 +15,13 @@ for i in range(10000):
     y=randint(1,100)
     latenta = stats.expon.rvs(0,0.25,1)
     if y<=25:
-        m = stats.gamma.rvs(4,0,1,0.333)
-    elif y<=50 and y>25:
-        m = stats.gamma.rvs(4,0,1,0.5)
-    elif y>50 and y<=80:
-        m = stats.gamma.rvs(5,0,1,0.5)
+        m = stats.gamma.rvs(4, 0, 1/3)
+    elif 50 >= y > 25:
+        m = stats.gamma.rvs(4, 0, 1/2)
+    elif 50 < y <= 80:
+        m = stats.gamma.rvs(5,0,1/2)
     else:
-        m= stats.gamma.rvs(5,0,1,0.333)
+        m= stats.gamma.rvs(5,0,1/3)
     z.append(m+latenta)
 
     if m+latenta >= 3:
