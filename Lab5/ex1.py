@@ -51,12 +51,12 @@ cpd_r2 = TabularCPD(
     variable="r2",
     variable_card=3,
     values=[
-        [1,0.8,0.45,0,0,1,1,0.5,0,0], # prima parte a a pariat // a doua carte, a nu a pariat
-        [0,0,0,0,0,0,0,0,0,0.3,0.6], # prima parte a a asteptat // a doua carte, a nu a asteptat
+        [1,0.8,0.45,0,0,1,1,0.5,0,0],
+        [0,0,0,0,0,0,0,0,0,0.3,0.6],
         [0,0.2,0.55,1,1,0,0,0.5,0.7,0.4],
     ],
     evidence=["c1","r1"],
-    evidence_card=[5,2],
+    evidence_card=[10,3],
     )
 )
 
@@ -65,11 +65,17 @@ cpd_r3 = TabularCPD(
     variable="r3",
     variable_card=3,
     values=[
-        [1,0.8,0.45,0,0,1,1,0.5,0,0], # prima parte a a pariat // a doua carte, a nu a pariat
-        [0,0,0,0,0,0,0,0,0,0.3,0.6], # prima parte a a asteptat // a doua carte, a nu a asteptat
-        [0,0.2,0.55,1,1,0,0,0.5,0.7,0.4],
+        [1,0.8,0.45,0,0,1,1,0.5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0.3,0.6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0.2,0.55,1,1,0,0,0.5,0.7,0.4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
-    evidence=["r2"],
-    evidence_card=[5,2],
+    evidence=["r2","r1", "c1"],
+    evidence_card=[10,3],
     )
 )
+
+model.add_cpds(cpd_c1, cpd_c2, cpd_r1,cpd_r2, cpd_r3)
+infer = VariableElimination(model)
+posterior_p1 = infer.query(["r1"], evidence={"c1": 2})
+posterior_p = infer.query(["r2"], evidence={"c2":3,"r1":1})
+print(posterior_p,posterior_p1)
