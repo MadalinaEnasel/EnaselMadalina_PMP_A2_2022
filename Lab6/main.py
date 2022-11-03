@@ -1,6 +1,6 @@
 import csv
 import arviz as az
-# import pymc3 as pm
+import pymc3 as pm
 import matplotlib.pyplot as plt
 import stats as stats
 
