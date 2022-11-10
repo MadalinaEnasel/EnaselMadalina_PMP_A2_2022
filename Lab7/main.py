@@ -34,4 +34,4 @@ with pm.Model() as m_x1x2:
     e = pm.HalfCauchy('ε', 5)
     n = a + b1 * x1[:, 0] + b2 * x2[:, 1]
     y_pred = pm.Normal('y_pred', mu=n, sd=e, observed=pret)
-    idata_x1x2 = pm.sample(2000, return_inferencedata=True)
+    idata_x1x2 = pm.sample(2000, return_inferencedata=True, init='map')
