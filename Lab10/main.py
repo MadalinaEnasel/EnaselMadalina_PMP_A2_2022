@@ -36,6 +36,7 @@ for cluster in clusters:
 comp_waic = az.compare(dict(zip([str(c) for c in clusters], idatas)),
                        method='BB-pseudo-BMA', ic="waic", scale="deviance")
 
+
 az.compare_plot(comp_waic)
 comp_loo = az.compare(dict(zip([str(c) for c in clusters], idatas)),
                       method='BB-pseudo-BMA', ic="loo", scale="deviance")
